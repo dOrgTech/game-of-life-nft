@@ -64,6 +64,10 @@ function draw() {
 				r = currentColor[0];
 				g = currentColor[1];
 				b = currentColor[2];
+				colorMap[j] = [r,g,b]
+
+				// Determine the new current Color for next row
+				nextColor = currentIncrement == palette.length - 1 ? palette[0] : palette[currentIncrement+1];
 				currentColor[0] = (nextColor[0] - currentColor[0])/incrementsPerColor+currentColor[0]
 				currentColor[1] = (nextColor[1] - currentColor[1])/incrementsPerColor+currentColor[1]
 				currentColor[2] = (nextColor[2] - currentColor[2])/incrementsPerColor+currentColor[2]
