@@ -9,7 +9,20 @@ function make2DArray(cols, rows) {
 let grid;
 let cols;
 let rows;
+let r;
+let g;
+let b;
 let resolution = 10;
+let colorMap = {};
+const palette = [
+	// rgb values
+	[95, 110, 239],
+	[230, 86, 136],
+	[255, 123, 34],
+	[239, 238, 2],
+	[115, 242, 95],
+	[68, 148, 248],
+]
 
 function setup() {
 	// Hide p5-manager toggle
@@ -29,14 +42,34 @@ function setup() {
 }
 
 function draw() {
+
 	background(0);
+	let incrementsPerColor;
+	let currentIncrement;
+	let currentColor;
+	let nextColor;
 
 	for (let i = 0; i < cols; i++) {
 		for (let j = 0; j < rows; j++) {
 			let x = i * resolution;
 			let y = j * resolution;
+			if (i == 0 && frameCount == 1) {
+				incrementsPerColor = rows/palette.length;
+				currentIncrement = Math.floor(j/incrementsPerColor);
+				currentColor = palette[currentIncrement];
+				nextColor = currentIncrement == palette.length - 1 ? palette[0] : palette[currentIncrement+1];
+				r = currentColor[0];
+				g = currentColor[1];
+				b = currentColor[2];
+				currentColor[0] = (nextColor[0] - currentColor[0])/incrementsPerColor+currentColor[0]
+				currentColor[1] = (nextColor[1] - currentColor[1])/incrementsPerColor+currentColor[1]
+				currentColor[2] = (nextColor[2] - currentColor[2])/incrementsPerColor+currentColor[2]
+				colorMap[j] = [r,g,b]
+			}
+
+			
 			if (grid[i][j] == 1) {
-				fill(255);
+				fill(colorMap[j][0],colorMap[j][1],colorMap[j][2])
 				stroke(0);
 				rect(x,y,resolution - 1,resolution - 1);
 			}
@@ -67,7 +100,7 @@ function draw() {
 
 	grid = next;
 
-	// if(frameCount == 10) {
+	// if(frameCount == 1) {
 	// 	noLoop();
 	// }
 
