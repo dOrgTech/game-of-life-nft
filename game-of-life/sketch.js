@@ -54,17 +54,19 @@ function draw() {
 			let x = i * resolution;
 			let y = j * resolution;
 			if (i == 0 && frameCount == 1) {
+
+				// Determine current color based on row iteration
 				incrementsPerColor = rows/palette.length;
 				currentIncrement = Math.floor(j/incrementsPerColor);
 				currentColor = palette[currentIncrement];
-				nextColor = currentIncrement == palette.length - 1 ? palette[0] : palette[currentIncrement+1];
+
+				// Determine appropriate r,g,b values based on row position within currentColor
 				r = currentColor[0];
 				g = currentColor[1];
 				b = currentColor[2];
 				currentColor[0] = (nextColor[0] - currentColor[0])/incrementsPerColor+currentColor[0]
 				currentColor[1] = (nextColor[1] - currentColor[1])/incrementsPerColor+currentColor[1]
 				currentColor[2] = (nextColor[2] - currentColor[2])/incrementsPerColor+currentColor[2]
-				colorMap[j] = [r,g,b]
 			}
 
 			
@@ -100,7 +102,8 @@ function draw() {
 
 	grid = next;
 
-	// if(frameCount == 1) {
+	// Stop the animation after a certain number of frames.
+	// if(frameCount == 10) {
 	// 	noLoop();
 	// }
 
