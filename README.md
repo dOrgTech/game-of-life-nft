@@ -7,7 +7,7 @@
 $ npm install -g p5-manager
 ```
 
-2. Start the local server in the `game-of-life` directory.
+2. Start the local server in the root directory.
 
 ```
 $ p5 server
