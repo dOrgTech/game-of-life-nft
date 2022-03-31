@@ -26,7 +26,7 @@ const palette = [
 
 function setup() {
 	// Hide p5-manager toggle
-	window.parent.document.querySelector(".toggle").style.display = "none";
+	// window.parent.document.querySelector(".toggle").style.display = "none";
 
 	frameRate(10)
 	createCanvas(800, 800);
