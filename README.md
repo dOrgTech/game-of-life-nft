@@ -1,4 +1,6 @@
 # Game of Life Generative Art
+
+[View preview here](https://dorgtech.github.io/game-of-life-nft/docs)
  
 ## Install and Setup
 1. Install [p5-manager](https://github.com/chiunhau/p5-manager) globally
