@@ -12,16 +12,17 @@ let rows;
 let r;
 let g;
 let b;
-let resolution = 10;
+let resolution = 12;
 let colorMap = {};
 const palette = [
 	// rgb values
-	[95, 110, 239],
-	[230, 86, 136],
-	[255, 123, 34],
-	[239, 238, 2],
-	[115, 242, 95],
-	[68, 148, 248],
+	// [95, 110, 239],
+	// [230, 86, 136],
+	// [255, 123, 34],
+	// [239, 238, 2],
+	// [115, 242, 95],
+	// [68, 148, 248],
+	[255,255,255]
 ]
 
 function setup() {
@@ -29,7 +30,7 @@ function setup() {
 	// window.parent.document.querySelector(".toggle").style.display = "none";
 
 	frameRate(10)
-	createCanvas(800, 800);
+	createCanvas(2004, 2616);
 	cols = width / resolution;
 	rows = height / resolution;
 
