@@ -12,7 +12,7 @@ let rows;
 let r;
 let g;
 let b;
-let resolution = 10;
+let resolution = 6;
 let colorMap = {};
 const palette = [
 	// rgb values
@@ -24,16 +24,16 @@ const palette = [
 	[68, 148, 248],
 ]
 let mouseTrailEffect = true; // pixels trail from the mouse cursor;
-let effectRadius = 4;
+let effectRadius = 8;
 
 function setup() {
 	// Hide p5-manager toggle
 	// window.parent.document.querySelector(".toggle").style.display = "none";
 
 	frameRate(10)
-	createCanvas(800, 800);
-	cols = width / resolution;
-	rows = height / resolution;
+	createCanvas(window.screen.width, window.screen.height);
+	cols = Math.ceil(width / resolution);
+	rows = Math.ceil(height / resolution);
 
 	grid = make2DArray(cols,rows);
 	for (let i = 0; i < cols; i++) {
@@ -79,6 +79,7 @@ function draw() {
 			if (grid[i][j] == 1) {
 				fill(colorMap[j][0],colorMap[j][1],colorMap[j][2])
 				stroke(0);
+				strokeWeight(2);
 				rect(x,y,resolution - 1,resolution - 1);
 			}
 		}
