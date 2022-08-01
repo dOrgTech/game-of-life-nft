@@ -23,6 +23,8 @@ const palette = [
 	[115, 242, 95],
 	[68, 148, 248],
 ]
+let mouseTrailEffect = true; // pixels trail from the mouse cursor;
+let effectRadius = 4;
 
 function setup() {
 	// Hide p5-manager toggle
@@ -84,16 +86,19 @@ function draw() {
 
 	let next = make2DArray(cols, rows);
 
-	let cursorPixel = {
-		x: Math.floor(mouseX/resolution), 
-		y: Math.floor(mouseY/resolution),
-	}
-
-	if(cursorPixel.y > 0 && cursorPixel.y < rows && cursorPixel.x > 0 && cursorPixel.x < cols) {
-		grid[cursorPixel.x][cursorPixel.y] = 1;
-		let effectRadius = 3;
-		for (let i = 1; i < effectRadius*2; i++) {
-			grid[cursorPixel.x+Math.round(random(-i,i))][cursorPixel.y+Math.round(random(-i,i))] = 1;
+	if(mouseTrailEffect) {
+		let cursorPixel = {
+			x: Math.floor(mouseX/resolution), 
+			y: Math.floor(mouseY/resolution),
+		}
+	
+		if(cursorPixel && cursorPixel.y > 0 && cursorPixel.y < rows && cursorPixel.x > 0 && cursorPixel.x < cols) {
+			grid[cursorPixel.x][cursorPixel.y] = 1;
+			for (let i = 1; i < effectRadius*2; i++) {
+				let x = (cols + cursorPixel.x + Math.round(random(-i,i))) % cols;
+				let y = (rows + cursorPixel.y + Math.round(random(-i,i))) % rows;
+				grid[x][y] = 1;
+			}
 		}
 	}
 
