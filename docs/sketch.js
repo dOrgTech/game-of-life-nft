@@ -84,6 +84,19 @@ function draw() {
 
 	let next = make2DArray(cols, rows);
 
+	let cursorPixel = {
+		x: Math.floor(mouseX/resolution), 
+		y: Math.floor(mouseY/resolution),
+	}
+
+	if(cursorPixel.y > 0 && cursorPixel.y < rows && cursorPixel.x > 0 && cursorPixel.x < cols) {
+		grid[cursorPixel.x][cursorPixel.y] = 1;
+		let effectRadius = 3;
+		for (let i = 1; i < effectRadius*2; i++) {
+			grid[cursorPixel.x+Math.round(random(-i,i))][cursorPixel.y+Math.round(random(-i,i))] = 1;
+		}
+	}
+
 	// Compute next based on grid
 	for (let i = 0; i < cols; i++) {
 		for (let j = 0; j < rows; j++) {
